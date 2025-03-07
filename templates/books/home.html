@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Welcome to Alex Bookstore!</h1>
+
+<h2>Categories</h2>
+<ul>
+    {% for c in categories %}
+    <li><a href="{% url 'category_detail' c.pk %}">{{ c.name }}</a></li>
+    {% endfor %}
+</ul>
+
+<h2>All Books</h2>
+<ul>
+    {% for b in books %}
+    <li><a href="{% url 'book_detail' b.pk %}">{{ b.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

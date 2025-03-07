@@ -11,3 +11,6 @@ class Subscription(models.Model):
 
     def is_active(self):
         return self.end_date > timezone.now()
+    
+    def __str__(self):
+        return f"{self.user.username} subscription"

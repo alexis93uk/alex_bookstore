@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Subscribe</h1>
+<p>Subscribe for 30 days of access at $9.99!</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Subscribe Now</button>
+</form>
+{% endblock %}
