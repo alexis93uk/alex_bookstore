@@ -13,12 +13,12 @@ def home(request):
 
 def category_detail(request, pk):
     category = get_object_or_404(Category, pk=pk)
-    books = Book.objects.filter(category=category)
-    context = {
+    books_in_category = Book.objects.filter(category=category)
+
+    return render(request, 'books/category_detail.html', {
         'category': category,
-        'books': books,
-    }
-    return render(request, 'books/category_detail.html', context)
+        'books_in_category': books_in_category
+    })
 
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
