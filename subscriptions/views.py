@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from datetime import timedelta
-
+from .forms import CancelSubscriptionForm
 from .models import Subscription
 
 @login_required
@@ -56,3 +56,24 @@ def payment_success(request):
 @login_required
 def payment_failed(request):
     return render(request, 'subscriptions/payment_failed_page.html')
+
+
+@login_required
+def cancel_subscription(request):
+    try:
+        subscription = Subscription.objects.get(user=request.user)
+    except Subscription.DoesNotExist:
+        # If the user doesn't have a subscription, redirect to profile
+        return redirect('profile')
+        
+    if request.method == 'POST':
+        form = CancelSubscriptionForm(request.POST)
+        if form.is_valid():
+            # Cancel the subscription by setting the end_date to now
+            subscription.end_date = timezone.now()
+            subscription.save()
+            return redirect('profile')
+    else:
+        form = CancelSubscriptionForm()
+        
+    return render(request, 'subscriptions/cancel_subscription.html', {'form': form})
