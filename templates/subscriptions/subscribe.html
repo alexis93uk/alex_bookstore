@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<div class="row justify-content-center">
-  <div class="col-md-6">
-    <h2>Subscribe</h2>
-    <p>Enjoy unlimited access for $9.99/month. Cancel anytime.</p>
-    <form method="POST">
-      {% csrf_token %}
-      <!-- This button triggers the POST to your subscription view -->
-      <button type="submit" class="btn btn-primary">Subscribe Now</button>
-    </form>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6 overlay-container text-center">
+      <h2>Subscribe</h2>
+      <p>Enjoy unlimited access for $9.99/month. Cancel anytime.</p>
+      
+      <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Subscribe Now</button>
+      </form>
+    </div>
   </div>
 </div>
 {% endblock %}

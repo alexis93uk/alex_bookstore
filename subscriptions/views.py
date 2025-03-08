@@ -7,21 +7,36 @@ from django.utils import timezone
 from datetime import timedelta
 from .forms import CancelSubscriptionForm
 from .models import Subscription
+from django.contrib import messages
+
 
 @login_required
 def subscribe(request):
-    if request.method == 'POST':
-        # Set Stripe secret key
-        stripe.api_key = settings.STRIPE_SECRET_KEY
+    try:
+        # Get the user's subscription if it exists
+        subscription = Subscription.objects.get(user=request.user)
+    except Subscription.DoesNotExist:
+        subscription = None
 
-        # Create the checkout session
+    now = timezone.now()
+
+    # Check if subscription exists and is active
+    if subscription and subscription.is_active():
+        messages.info(request, "You are already subscribed. Please check your profile for details.")
+        return redirect('profile')
+
+    # At this point, either no subscription exists, or it is expired/canceled.
+    # You can then create a new checkout session to resume or start a subscription.
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+
+    if request.method == 'POST':
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             mode='payment',
             line_items=[{
                 'price_data': {
                     'currency': 'usd',
-                    'unit_amount': 999,  # e.g., $9.99 in cents
+                    'unit_amount': 999,  # $9.99 in cents
                     'product_data': {
                         'name': 'Monthly Subscription',
                     },
@@ -31,25 +46,30 @@ def subscribe(request):
             success_url=request.build_absolute_uri(reverse('payment_success')),
             cancel_url=request.build_absolute_uri(reverse('payment_failed')),
         )
-        # Redirect the user to Stripe's checkout page
         return redirect(session.url, code=303)
 
-    # If GET request, just render a page with a "Subscribe" button
-    return render(request, 'subscriptions/subscribe.html')
+    return render(request, 'subscriptions/subscribe.html', {'STRIPE_PUBLIC_KEY': settings.STRIPE_PUBLIC_KEY})
 
 
 @login_required
 def payment_success(request):
-    """
-    A naive 'success' view — in production, you would verify with Stripe via webhooks,
-    but here we'll just create the Subscription immediately.
-    """
-    # Create or update subscription for the user
-    Subscription.objects.create(
+    now = timezone.now()
+    sub, created = Subscription.objects.get_or_create(
         user=request.user,
-        start_date=timezone.now(),
-        end_date=timezone.now() + timedelta(days=30),
+        defaults={'start_date': now, 'end_date': now + timedelta(days=30)}
     )
+    
+    if not created:
+        # If subscription exists but is expired or canceled, resume it
+        if sub.end_date <= now:
+            sub.start_date = now
+            sub.end_date = now + timedelta(days=30)
+        else:
+            # Subscription is active, so extend it
+            sub.end_date += timedelta(days=30)
+        sub.save()
+
+    messages.success(request, "Your subscription has been successfully processed.")
     return render(request, 'subscriptions/payment_success.html')
 
 

@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from subscriptions.models import Subscription
 from django.contrib import messages
+from django.utils import timezone
+
 
 def register_user(request):
     if request.method == 'POST':
@@ -31,3 +35,13 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('home')
+
+@login_required
+def profile(request):
+    sub = None
+    try:
+        sub = Subscription.objects.get(user=request.user)
+    except Subscription.DoesNotExist:
+        pass
+
+    return render(request, 'users/profile.html', {'subscription': sub})
