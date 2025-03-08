@@ -1,18 +1,44 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<h1>Welcome to Alex Bookstore!</h1>
+<div class="container-fluid p-4" style="min-height:100vh;">
+  <div class="row home-row">
+    <div class="col-12 col-md-10 offset-md-1 overlay-container">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Categories</h3>
+          <ul class="list-group category-list">
+            {% for c in categories %}
+            <li class="list-group-item mb-1">
+              <a href="{% url 'category_detail' c.pk %}">{{ c.name }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
 
-<h2>Categories</h2>
-<ul>
-    {% for c in categories %}
-    <li><a href="{% url 'category_detail' c.pk %}">{{ c.name }}</a></li>
-    {% endfor %}
-</ul>
-
-<h2>All Books</h2>
-<ul>
-    {% for b in books %}
-    <li><a href="{% url 'book_detail' b.pk %}">{{ b.title }}</a></li>
-    {% endfor %}
-</ul>
+        <div class="col-md-8">
+          <h3>Random Books</h3>
+          <div class="row">
+            {% for book in recent_books %}
+            <div class="col-sm-6 col-md-4 mb-3">
+              <div class="card shadow-sm">
+                {% if book.image %}
+                  <img src="{{ book.image.url }}" class="card-img-top" alt="Book Cover">
+                {% else %}
+                  <img src="{% static 'images/no_cover.png' %}" class="card-img-top" alt="No Cover">
+                {% endif %}
+                <div class="card-body">
+                  <h5 class="card-title">{{ book.title }}</h5>
+                  <p class="card-text">{{ book.author }}</p>
+                  <a href="{% url 'book_detail' book.pk %}" class="btn btn-primary">Details</a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

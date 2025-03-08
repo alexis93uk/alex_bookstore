@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block content %}
-<h1>Subscribe</h1>
-<p>Subscribe for 30 days of access at $9.99!</p>
-
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit">Subscribe Now</button>
-</form>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2>Subscribe</h2>
+    <p>Enjoy unlimited access for $9.99/month. Cancel anytime.</p>
+    <form method="POST">
+      {% csrf_token %}
+      <!-- This button triggers the POST to your subscription view -->
+      <button type="submit" class="btn btn-primary">Subscribe Now</button>
+    </form>
+  </div>
+</div>
 {% endblock %}

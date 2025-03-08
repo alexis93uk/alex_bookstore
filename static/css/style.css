@@ -1,0 +1,43 @@
+body {
+    background: url("/static/images/background.jpg") no-repeat center center fixed;
+    background-size: cover; 
+  }
+  
+  .navbar {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  
+  .list-group-item {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  
+  h1, h2, h3, h4 {
+    color: #333;
+    text-shadow: 1px 1px 2px #fff;
+  }
+  
+
+  .overlay-container {
+    background-color: rgba(255, 255, 255, 0.7); 
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .category-list .list-group-item {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: none;
+  }
+  
+  
+  h1, h2, h3 {
+    color: #333;
+    text-shadow: 1px 1px 2px #fff;
+  }
+  
+  .home-row {
+    min-height: 80vh; 
+    display: flex;
+    align-items: center;
+  }

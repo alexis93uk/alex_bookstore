@@ -10,10 +10,6 @@ from .models import Subscription
 
 @login_required
 def subscribe(request):
-    """
-    Creates a Stripe Checkout Session for a one-time payment for a 30-day subscription.
-    Redirects user to Stripe's hosted payment page.
-    """
     if request.method == 'POST':
         # Set Stripe secret key
         stripe.api_key = settings.STRIPE_SECRET_KEY
