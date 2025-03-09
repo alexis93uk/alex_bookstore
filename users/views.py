@@ -11,7 +11,7 @@ def register_user(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        # Minimal validation, you can expand as needed
+        
         if User.objects.filter(username=username).exists():
             messages.error(request, 'Username already taken.')
         else:

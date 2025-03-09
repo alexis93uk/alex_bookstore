@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -13,7 +14,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 SECRET_KEY = 'django-insecure-a!n$)=lg5)=+*=p!15fvc#*+!72i&!_*^nktf78$$q04n9+&#3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -78,7 +79,11 @@ DATABASES = {
     }
 }
 
-
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.config(
+        conn_max_age=600, 
+        default=DATABASES['default']
+    )
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -126,3 +131,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', 'pk_test_1234')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', 'sk_test_51R01RvJDhUMguKpSS4MXGhNXVmYKiRabS60CWnYhGoi3cXv8weoUUnbfBylJT9IigWlNI0WUuEbVr5gQ5lMBW1Ui00c1txpJ48')
+
+ALLOWED_HOSTS = ['alex-bookstore.herokuapp.com', '127.0.0.1']
