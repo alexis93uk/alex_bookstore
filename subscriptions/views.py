@@ -11,20 +11,32 @@ from django.contrib import messages
 
 
 def subscribe(request):
+    # 1. If the user is not authenticated, show a message and redirect
     if not request.user.is_authenticated:
         messages.warning(request, "Please register or log in first to subscribe.")
-        return redirect('login') 
+        return redirect('login')
 
+    # 2. Check if the user already has an active subscription
+    try:
+        subscription = Subscription.objects.get(user=request.user)
+        if subscription.is_active():
+            messages.info(request, "You are already subscribed. Please check your profile for details.")
+            return redirect('profile')
+    except Subscription.DoesNotExist:
+        subscription = None
+
+    # 3. If no active subscription, proceed with Stripe checkout
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
     if request.method == 'POST':
+        # Create Stripe checkout session (test mode)
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             mode='payment',
             line_items=[{
                 'price_data': {
                     'currency': 'usd',
-                    'unit_amount': 999,  
+                    'unit_amount': 999,  # e.g., $9.99 in cents
                     'product_data': {
                         'name': 'Monthly Subscription',
                     },

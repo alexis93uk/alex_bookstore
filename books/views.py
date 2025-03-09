@@ -1,6 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book, Category
 from .forms import BookForm
+from django.utils import timezone
+from subscriptions.models import Subscription
+from django.contrib.auth.decorators import login_required
+
+
 
 def home(request):
     categories = Category.objects.all()
@@ -36,3 +41,19 @@ def add_book(request):
     else:
         form = BookForm()
     return render(request, 'books/add_book.html', {'form': form})
+
+@login_required
+def read_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+
+    # Check if the book is premium and the user has an active subscription
+    if book.is_premium:
+        try:
+            sub = Subscription.objects.get(user=request.user)
+            if not sub.is_active():
+                # User is not subscribed; redirect to subscribe page with a message.
+                return redirect('subscribe')
+        except Subscription.DoesNotExist:
+            return redirect('subscribe')
+
+    return render(request, 'books/book_read.html', {'book': book})

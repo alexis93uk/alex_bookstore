@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-4">
+  <h2>{{ book.title }}</h2>
+  <p><strong>Author:</strong> {{ book.author }}</p>
+  <hr>
+  <div class="full-text-container" style="max-height: 600px; overflow-y: auto; background-color: rgba(255,255,255,0.8); padding: 20px; border-radius: 8px;">
+    <pre style="white-space: pre-wrap;">{{ book.full_text }}</pre>
+  </div>
+</div>
+{% endblock %}

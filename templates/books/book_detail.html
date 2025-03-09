@@ -23,6 +23,12 @@
         <h2>{{ book.title }}</h2>
         <p><strong>Author:</strong> {{ book.author }}</p>
         <p>{{ book.description }}</p>
+
+        {% if book.full_text %}
+          <a href="{% url 'read_book' book.pk %}" class="btn btn-success mt-2">
+            Read Full Text
+          </a>
+        {% endif %}
       </div>
     </div>
   </div>
