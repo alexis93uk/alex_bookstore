@@ -10,23 +10,68 @@
         {% for c in categories %}
         <div class="col-sm-6 col-md-4 mb-3">
           <div class="card shadow-sm category-card" style="overflow: hidden;">
-            
-            {% if c.image_path %}
-            <img 
-              src="{% static 'images/' %}{{ c.image_path }}" 
-              class="card-img-top category-image" 
-              alt="{{ c.name }}">
-          {% else %}
-            <img 
-              src="{% static 'images/no_cover.png' %}" 
-              class="card-img-top category-image" 
-              alt="{{ c.name }}">
-          {% endif %}
+
+            {% if c.name == "Fiction" %}
+              <img
+                src="{% static 'images/fiction.jpg' %}"
+                class="card-img-top category-image"
+                alt="Fiction"
+              >
+            {% elif c.name == "Non-Fiction" %}
+              <img
+                src="{% static 'images/non-fiction.jpg' %}"
+                class="card-img-top category-image"
+                alt="Non-Fiction"
+              >
+            {% elif c.name == "Romance" %}
+              <img
+                src="{% static 'images/romance.jpg' %}"
+                class="card-img-top category-image"
+                alt="Romance"
+              >
+            {% elif c.name == "Science" %}
+              <img
+                src="{% static 'images/science.jpg' %}"
+                class="card-img-top category-image"
+                alt="Science"
+              >
+            {% elif c.name == "Thriller" %}
+              <img
+                src="{% static 'images/thriller.jpg' %}"
+                class="card-img-top category-image"
+                alt="Thriller"
+              >
+              {% if c.name == "Fantasy" %}
+              <img
+                src="{% static 'images/fantasy.jpg' %}"
+                class="card-img-top category-image"
+                alt="Fantasy"
+              >
+              {% if c.name == "Biography" %}
+              <img
+                src="{% static 'images/biography.jpg' %}"
+                class="card-img-top category-image"
+                alt="Biography"
+              >
+              {% if c.name == "Children" %}
+              <img
+                src="{% static 'images/children.jpg' %}"
+                class="card-img-top category-image"
+                alt="Children"
+              >
+            {% else %}
+              <!-- Fallback if none match -->
+              <img
+                src="{% static 'images/no_cover.png' %}"
+                class="card-img-top category-image"
+                alt="{{ c.name }}"
+              >
+            {% endif %}
 
             <div class="card-body">
               <h5 class="card-title">{{ c.name }}</h5>
               <p class="card-text">{{ c.description }}</p>
-              <a href="{% url 'category_detail' c.pk %}" 
+              <a href="{% url 'category_detail' c.pk %}"
                  class="btn btn-primary">
                 Explore
               </a>
@@ -39,17 +84,14 @@
   </div>
 </div>
 
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const images = document.querySelectorAll('.category-image');
   images.forEach((img) => {
-    
     img.addEventListener('mouseover', () => {
       img.style.transform = 'scale(1.1)';
       img.style.transition = 'transform 0.3s ease';
     });
-    
     img.addEventListener('mouseout', () => {
       img.style.transform = 'scale(1)';
     });
