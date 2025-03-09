@@ -11,15 +11,17 @@
         <div class="col-sm-6 col-md-4 mb-3">
           <div class="card shadow-sm category-card" style="overflow: hidden;">
             
-            {% if c.image %}
-              <img src="{{ c.image.url }}" 
-                   class="card-img-top category-image" 
-                   alt="{{ c.name }}">
-            {% else %}
-              <img src="{% static 'images/no_cover.png' %}" 
-                   class="card-img-top category-image" 
-                   alt="{{ c.name }}">
-            {% endif %}
+            {% if c.image_path %}
+            <img 
+              src="{% static 'images/' %}{{ c.image_path }}" 
+              class="card-img-top category-image" 
+              alt="{{ c.name }}">
+          {% else %}
+            <img 
+              src="{% static 'images/no_cover.png' %}" 
+              class="card-img-top category-image" 
+              alt="{{ c.name }}">
+          {% endif %}
 
             <div class="card-body">
               <h5 class="card-title">{{ c.name }}</h5>
