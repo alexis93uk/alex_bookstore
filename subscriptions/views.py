@@ -10,23 +10,11 @@ from .models import Subscription
 from django.contrib import messages
 
 
-@login_required
 def subscribe(request):
-    try:
-        # Get the user's subscription if it exists
-        subscription = Subscription.objects.get(user=request.user)
-    except Subscription.DoesNotExist:
-        subscription = None
+    if not request.user.is_authenticated:
+        messages.warning(request, "Please register or log in first to subscribe.")
+        return redirect('login') 
 
-    now = timezone.now()
-
-    # Check if subscription exists and is active
-    if subscription and subscription.is_active():
-        messages.info(request, "You are already subscribed. Please check your profile for details.")
-        return redirect('profile')
-
-    # At this point, either no subscription exists, or it is expired/canceled.
-    # You can then create a new checkout session to resume or start a subscription.
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
     if request.method == 'POST':
@@ -36,19 +24,19 @@ def subscribe(request):
             line_items=[{
                 'price_data': {
                     'currency': 'usd',
-                    'unit_amount': 999,  # $9.99 in cents
+                    'unit_amount': 999,  
                     'product_data': {
                         'name': 'Monthly Subscription',
                     },
                 },
                 'quantity': 1,
             }],
-            success_url=request.build_absolute_uri(reverse('payment_success')),
-            cancel_url=request.build_absolute_uri(reverse('payment_failed')),
+            success_url=request.build_absolute_uri('/subscriptions/payment-success/'),
+            cancel_url=request.build_absolute_uri('/subscriptions/payment-failed/'),
         )
         return redirect(session.url, code=303)
 
-    return render(request, 'subscriptions/subscribe.html', {'STRIPE_PUBLIC_KEY': settings.STRIPE_PUBLIC_KEY})
+    return render(request, 'subscriptions/subscribe.html')
 
 
 @login_required
@@ -60,12 +48,10 @@ def payment_success(request):
     )
     
     if not created:
-        # If subscription exists but is expired or canceled, resume it
         if sub.end_date <= now:
             sub.start_date = now
             sub.end_date = now + timedelta(days=30)
         else:
-            # Subscription is active, so extend it
             sub.end_date += timedelta(days=30)
         sub.save()
 
@@ -83,13 +69,11 @@ def cancel_subscription(request):
     try:
         subscription = Subscription.objects.get(user=request.user)
     except Subscription.DoesNotExist:
-        # If the user doesn't have a subscription, redirect to profile
         return redirect('profile')
         
     if request.method == 'POST':
         form = CancelSubscriptionForm(request.POST)
         if form.is_valid():
-            # Cancel the subscription by setting the end_date to now
             subscription.end_date = timezone.now()
             subscription.save()
             return redirect('profile')

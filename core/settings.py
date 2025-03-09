@@ -1,7 +1,6 @@
 from pathlib import Path
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_URL = '/media/'
@@ -71,9 +70,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alex_bookstore_db',      # the database name you created
-        'USER': 'postgres',               # or whichever username you have
-        'PASSWORD': 'Loislane93!', # the password you set
+        'NAME': 'alex_bookstore_db',      
+        'USER': 'postgres',              
+        'PASSWORD': 'Loislane93!', 
         'HOST': 'localhost',
         'PORT': '5432',
     }

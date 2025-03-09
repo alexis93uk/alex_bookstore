@@ -2,19 +2,28 @@
 {% load static %}
 {% block content %}
 <div class="container mt-4">
-  <div class="row">
-    <div class="col-md-4">
-      {% if book.image %}
-      <img src="{{ book.image.url }}" class="img-fluid" alt="Book Cover">
-      {% else %}
-      <img src="{% static 'images/no_cover.jpg' %}" class="img-fluid" alt="No Cover">
-      {% endif %}
-    </div>
-    <div class="col-md-8">
-      <h2>{{ book.title }}</h2>
-      <p><strong>Author:</strong> {{ book.author }}</p>
-      <p><strong>Description:</strong> {{ book.description }}</p>
-      <p><strong>Category:</strong> {{ book.category.name }}</p>
+  <div class="overlay-container p-4 mb-4">
+    <div class="row">
+      <div class="col-md-4">
+        {% if book.image %}
+          <img 
+            src="{{ book.image.url }}" 
+            alt="Book Cover" 
+            class="img-fluid mb-3"
+          >
+        {% else %}
+          <img 
+            src="{% static 'images/no_cover.png' %}" 
+            alt="No Cover" 
+            class="img-fluid mb-3"
+          >
+        {% endif %}
+      </div>
+      <div class="col-md-8">
+        <h2>{{ book.title }}</h2>
+        <p><strong>Author:</strong> {{ book.author }}</p>
+        <p>{{ book.description }}</p>
+      </div>
     </div>
   </div>
 </div>

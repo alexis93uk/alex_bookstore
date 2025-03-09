@@ -50,9 +50,17 @@ body {
     color: #333;  /* Ensure text is dark enough */
   }
   
-  /* Optionally, add text shadow or heavier color for headings */
   .overlay-container h2, .overlay-container p {
     text-shadow: 1px 1px 2px #fff;
+  }
+
+  .form-label {
+    font-weight: 600; /* Make labels bolder */
+  }
+  
+  .form-control {
+    background-color: #fff;
+    border: 1px solid #ccc;
   }
   
 
