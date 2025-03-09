@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-a!n$)=lg5)=+*=p!15fvc#*+!72i&!_*^nktf78$$q04n9+&#3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['alex-bookstore.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -129,7 +129,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', 'pk_test_1234')
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', 'ppk_test_51R01RvJDhUMguKpSnic1qfLAafMakwC7otPb3lAmfBgCoAY63jEDnJhakCIAJ5vJbIXwAV81vUxTfrnRAEAS3IRw00WVwmohRz')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', 'sk_test_51R01RvJDhUMguKpSS4MXGhNXVmYKiRabS60CWnYhGoi3cXv8weoUUnbfBylJT9IigWlNI0WUuEbVr5gQ5lMBW1Ui00c1txpJ48')
 
-ALLOWED_HOSTS = ['alex-bookstore.herokuapp.com', '127.0.0.1']
+
