@@ -14,9 +14,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 SECRET_KEY = 'django-insecure-a!n$)=lg5)=+*=p!15fvc#*+!72i&!_*^nktf78$$q04n9+&#3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ['*', '127.0.0.1']
+DEBUG = False
+
+ALLOWED_HOSTS = ['https://alex-bookstore-6dcd2c22e5a6.herokuapp.com/', '127.0.0.1']
 
 
 # Application definition
