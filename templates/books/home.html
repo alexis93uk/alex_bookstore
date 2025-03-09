@@ -41,19 +41,19 @@
                 class="card-img-top category-image"
                 alt="Thriller"
               >
-              {% if c.name == "Fantasy" %}
+              {% elif c.name == "Fantasy" %}
               <img
                 src="{% static 'images/fantasy.jpg' %}"
                 class="card-img-top category-image"
                 alt="Fantasy"
               >
-              {% if c.name == "Biography" %}
+              {% elif c.name == "Biography" %}
               <img
                 src="{% static 'images/biography.jpg' %}"
                 class="card-img-top category-image"
                 alt="Biography"
               >
-              {% if c.name == "Children" %}
+              {% elif c.name == "Children" %}
               <img
                 src="{% static 'images/children.jpg' %}"
                 class="card-img-top category-image"
