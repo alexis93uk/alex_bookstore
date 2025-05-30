@@ -1,5 +1,6 @@
 # Alex Bookstore
 https://alex-bookstore-6dcd2c22e5a6.herokuapp.com/
+Author: Aleksandar Husagic
 
 <p align="center">
   <img src="static/images/homepage.JPG" alt="Home Page" width="600">
@@ -13,15 +14,11 @@ https://alex-bookstore-6dcd2c22e5a6.herokuapp.com/
 - [Installation](#installation)  
 - [Deployment](#deployment)  
 - [Database and Data Structure](#database-and-data-structure)  
-- [Testing](#testing)  
-- [Usage](#usage)  
+- [Testing](#testing)    
 - [Project Structure](#project-structure)  
-- [Environment Variables](#environment-variables)  
-- [Known Issues](#known-issues)  
+- [Environment Variables](#environment-variables)   
 - [Future Improvements](#future-improvements)  
 - [Author](#author)  
-- [License](#license)  
-
 ---
 
 ## Project Overview
@@ -44,14 +41,18 @@ Alex Bookstore is a subscription-based web application built with Django that al
 
 ## Technologies Used
 
-- Python 3.13  
-- Django 5.1  
-- PostgreSQL  
-- AWS S3 for media storage  
-- Heroku for cloud deployment  
-- Bootstrap 5 for UI  
-- Gunicorn WSGI server  
-- Whitenoise for static files  
+- Python 3.13 – The main programming language used to build the backend of the web application.
+- Django 5.1 – A Python web framework used to create the full-stack web app, including models, views, templates, and admin features.
+- PostgreSQL – A powerful relational database used to store all data such as users, books, categories, and subscriptions. 
+- AWS S3 (Amazon Web Services) – Used to store and deliver uploaded book cover images in production.  
+- Heroku – The platform used to deploy the live version of the application online. 
+- Bootstrap 5 – A CSS framework used to style the website and make it responsive and user-friendly. 
+- Gunicorn – A Python WSGI HTTP server used with Heroku to serve the Django app in production.  
+- Whitenoise – Used to serve static files (like CSS and JS) directly from the Django app without needing a separate server. 
+- HTML/CSS/JavaScript – Used in the frontend for page structure, styling, and adding interactivity (like light/dark mode).
+- Git & GitHub – Used for version control and collaboration. The project code was regularly pushed to GitHub for backup and deployment.
+- Stripe – Integrated for handling subscription payments securely.
+- Visual Studio Code – My primary code editor used throughout the project.
 
 ---
 
