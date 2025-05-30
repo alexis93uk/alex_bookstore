@@ -1,10 +1,7 @@
-from datetime import date
+from django.utils import timezone
 
 def has_active_subscription(user):
-    """
-    Returns True if the user has an active subscription, False otherwise.
-    """
-    if hasattr(user, 'subscription'):
-        if user.subscription.end_date >= date.today():
-            return True
-    return False
+    if not user.is_authenticated:
+        return False
+    active_subscriptions = user.subscription_set.filter(end_date__gte=timezone.now())
+    return active_subscriptions.exists()
