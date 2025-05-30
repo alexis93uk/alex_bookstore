@@ -14,7 +14,7 @@ Author: Aleksandar Husagic
 - [Installation](#installation)  
 - [Deployment](#deployment)  
 - [Database and Data Structure](#database-and-data-structure)  
-- [Testing](#testing)      
+- [Manual Testing](#manual-testing)      
 - [Environment Variables](#environment-variables)   
 - [Future Improvements](#future-improvements)   
 ---
@@ -191,3 +191,41 @@ Verify that the system informs you that you are already subscribed (or simply pr
 
 #### Media File Checks:
 Use browser developer tools to verify that all media files (especially book cover images) load correctly and that there are no 404 errors.
+
+## Original custom Django models
+1. Category Model
+- Purpose:
+The Category model allows books to be grouped by genre or topic. This is a custom model that helps organize book data and enables users to browse content by categories.
+- Fields:
+•	id: Auto-generated primary key
+•	name: CharField for the category name
+•	description: Optional TextField for extra information
+Defined in: books/models.py
+<img src="static/images/categorymodel.JPG" alt="categorymodel" width="400">
+
+
+2. Book Model
+- Purpose:
+The Book model is central to the app. It stores all metadata for each book, including whether a book requires a subscription.
+Defined in: books/models.py
+- Fields:
+id: Auto-generated primary key
+title: CharField for book title
+author: CharField for author name
+description: TextField for synopsis
+category: ForeignKey to Category
+is_premium: Boolean for subscription gating
+image: ImageField for book cover (stored on AWS S3)
+full_text: TextField for full content (optional)
+<img src="static/images/booksmodel.JPG" alt="booksmodel" width="400">
+
+3. Subscription Model
+- Purpose:
+Handles user subscriptions, allowing the app to gate premium content and determine access based on dates.
+
+- Fields:
+user: ForeignKey to Django’s User model
+start_date: DateTimeField
+end_date: DateTimeField
+Defined in: subscriptions/models.py
+<img src="static/images/subscriptionsmodel.JPG" alt="subscriptionsmodel" width="400">
