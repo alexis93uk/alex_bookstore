@@ -37,6 +37,91 @@ Alex Bookstore is a subscription-based web application built with Django that al
 
 ---
 
+## 🧑‍💻 User Stories
+
+The following user stories describe key actions and features available within the Alex Bookstore application. Each is supported by Django views, templates, and database logic, and illustrated with visual screenshots for clarity.
+
+---
+
+### 📖 1. As a visitor, I can view the list of available books and categories
+
+- **Functionality**:  
+  Visitors can browse all public (non-premium) books organized by categories without needing to log in.
+
+- **Visual Preview**:  
+  ![Homepage](static/images/homepage.JPG)
+
+- **Details**:  
+  The homepage displays a responsive grid of available books grouped by category. It enables a welcoming entry point to the application.
+
+---
+
+### 🔐 2. As a user, I can register, log in, and log out
+
+- **Functionality**:  
+  New users can register using a simple form. Authenticated users can log in and out securely using Django’s built-in authentication system.
+
+- **Visual Preview**:  
+  ![Register/Login](static/images/register_login.JPG)
+  ![Register/Login](static/images/register_login2.JPG)
+
+- **Details**:  
+  Auth flows are customized to fit the project design, allowing a smooth transition between visitor and member access.
+
+---
+
+### 📘 3. As a user, I can view book details and read free books
+
+- **Functionality**:  
+  All users (authenticated or not) can click on a book to view more details. Free books are available to read without a subscription.
+
+- **Visual Preview**:  
+  ![Book Detail](static/images/book_detail.JPG)
+
+- **Details**:  
+  The book detail page shows cover, synopsis, and access to the reading view. Premium books are restricted based on subscription status.
+
+---
+
+### ⭐ 4. As a premium user, I can access and read premium content
+
+- **Functionality**:  
+  Users with an active subscription can access and read premium (locked) content.
+
+- **Visual Preview**:  
+  ![Read Premium Book](static/images/read_premium.JPG)
+
+- **Details**:  
+  The app checks the user’s subscription status before granting access. If the user is eligible, they can read the full text directly.
+
+---
+
+### 💳 5. As a user, I can subscribe and manage my subscription
+
+- **Functionality**:  
+  Users can purchase a subscription using Stripe and cancel it from the dashboard if needed.
+
+- **Visual Preview**:  
+  ![Subscribe](static/images/subscribe.JPG)
+
+- **Details**:  
+  Subscription management is handled using Stripe’s secure API and reflected in the Django model to control access.
+
+---
+
+### 🔔 6. As a user, I see dynamic messages depending on my subscription status
+
+- **Functionality**:  
+  Based on their subscription, users see customized messages (e.g., welcome back vs. upgrade prompt).
+
+- **Visual Preview**:  
+  ![Subscription Message](static/images/subscription_message.JPG)
+
+- **Details**:  
+  This enhances the UX by giving users contextual feedback—whether they’re active members or still need to subscribe.
+
+---
+
 ## Technologies Used
 
 - Python 3.13 – The main programming language used to build the backend of the web application.
