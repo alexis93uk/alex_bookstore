@@ -10,7 +10,7 @@ Author: Aleksandar Husagic
 
 - [Project Overview](#project-overview)  
 - [Features](#features) 
-- [🧑‍💻 User Stories](#user-stories)  
+- [User Stories](#user-stories)  
 - [Technologies Used](#technologies-used)  
 - [Installation](#installation)  
 - [Deployment](#deployment)  
