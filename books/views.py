@@ -4,15 +4,23 @@ from .forms import BookForm
 from django.utils import timezone
 from subscriptions.models import Subscription
 from django.contrib.auth.decorators import login_required
-
-
+from .utils import get_subscribed_user_books  # Import your utils
+from subscriptions.utils import has_active_subscription  # Import subscription utils
 
 def home(request):
     categories = Category.objects.all()
     books = Book.objects.all()
+
+    # Filter books based on subscription status
+    visible_books = get_subscribed_user_books(request.user, books)
+
+    # Check if user has an active subscription for template
+    has_subscription = has_active_subscription(request.user)
+
     context = {
         'categories': categories,
-        'books': books,
+        'books': visible_books,
+        'has_subscription': has_subscription
     }
     return render(request, 'books/home.html', context)
 
