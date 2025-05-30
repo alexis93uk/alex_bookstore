@@ -1,4 +1,160 @@
-# Presentation of Project 4 - alex bookstore
+# Alex Bookstore
+
+## Table of Contents
+
+- [Project Overview](#project-overview)  
+- [Features](#features)  
+- [Technologies Used](#technologies-used)  
+- [Installation](#installation)  
+- [Deployment](#deployment)  
+- [Database and Data Structure](#database-and-data-structure)  
+- [Testing](#testing)  
+- [Usage](#usage)  
+- [Project Structure](#project-structure)  
+- [Environment Variables](#environment-variables)  
+- [Known Issues](#known-issues)  
+- [Future Improvements](#future-improvements)  
+- [Author](#author)  
+- [License](#license)  
+
+---
+
+## Project Overview
+
+Alex Bookstore is a subscription-based web application built with Django that allows users to browse, read, and manage a collection of books categorized by genres. Premium content access is restricted to subscribed users. The application is deployed on Heroku, uses PostgreSQL as the database, and manages media files such as book covers using AWS S3.
+
+---
+
+## Features
+
+- User registration and authentication  
+- Subscription management with access control  
+- Book browsing by categories  
+- Support for free and premium books  
+- Admin interface for content and user management  
+- Responsive UI with Bootstrap  
+- Cloud deployment on Heroku with AWS S3 media storage  
+
+---
+
+## Technologies Used
+
+- Python 3.13  
+- Django 5.1  
+- PostgreSQL  
+- AWS S3 for media storage  
+- Heroku for cloud deployment  
+- Bootstrap 5 for UI  
+- Gunicorn WSGI server  
+- Whitenoise for static files  
+
+---
+
+## Installation
+
+### Prerequisites
+
+- Python 3.13+  
+- PostgreSQL  
+- AWS account with S3 bucket setup  
+
+### Setup Instructions
+
+1. Clone the repository  
+2. Create and activate a virtual environment  
+3. Install dependencies via `pip install -r requirements.txt`  
+4. Configure environment variables (see [Environment Variables](#environment-variables))  
+5. Run database migrations  
+6. Create a superuser  
+7. Collect static files  
+8. Run the development server  
+
+---
+
+## Deployment
+
+Deployment is done on Heroku with the following steps:
+
+1. Login to Heroku CLI  
+2. Create or use an existing Heroku app  
+3. Set required environment variables on Heroku  
+4. Push the code to Heroku’s Git remote  
+5. Run migrations on Heroku  
+6. Access the live app via the Heroku URL  
+
+---
+
+## Database and Data Structure
+
+### Database System
+
+- The project uses **PostgreSQL**, a robust relational database system, to store all data persistently.
+
+### Django Models and Relationships
+
+The database schema is represented by the following Django models and their relations:
+
+#### 1. **Category**
+
+- Stores book categories or genres.
+- Fields:
+  - `id`: Primary key (auto-generated)  
+  - `name`: String, name of the category  
+  - `description`: Text, optional description  
+
+#### 2. **Book**
+
+- Stores books with metadata and content.
+- Fields:
+  - `id`: Primary key  
+  - `title`: String, book title  
+  - `author`: String, author’s name  
+  - `description`: Text, book synopsis  
+  - `category`: ForeignKey to Category (one-to-many)  
+  - `is_premium`: Boolean, if the book requires subscription  
+  - `image`: ImageField, book cover stored on AWS S3  
+  - `full_text`: TextField, full book content (optional)  
+
+#### 3. **UserProfile**
+
+- Extends Django’s built-in User model for additional info.
+- Fields:
+  - `user`: OneToOneField to User  
+  - `bio`: Text, optional user biography  
+
+#### 4. **Subscription**
+
+- Manages user subscription periods.
+- Fields:
+  - `user`: ForeignKey to User (one user can have multiple subscriptions)  
+  - `start_date`: DateTimeField, subscription start  
+  - `end_date`: DateTimeField, subscription end  
+
+### Relationships Overview
+
+| Model       | Relationship          | Related Model | Cardinality     |
+|-------------|-----------------------|---------------|-----------------|
+| Book        | ForeignKey (category) | Category      | Many books to one category |
+| UserProfile | OneToOneField (user)  | User          | One-to-one      |
+| Subscription| ForeignKey (user)     | User          | Many subscriptions to one user |
+
+### Entity-Relationship Diagram (ERD)
+
+*(Insert your ERD image here to visually represent these relationships)*
+
+---
+
+## Testing
+
+- Automated tests cover models, views, and utilities.  
+- Run tests locally with:  
+  ```bash
+  python manage.py test
+
+
+*************
+
+  # Presentation of Project 4 - alex bookstore
 ## Briefing
 Alex Bookstore is a Django-based web application that enables users to browse categorized books, view detailed information, and access premium content through subscriptions, with integrated Stripe payments and AWS S3 for media.
 

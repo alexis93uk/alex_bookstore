@@ -14,9 +14,12 @@ def home(request):
     # Filter books based on subscription status
     visible_books = get_subscribed_user_books(request.user, books)
 
-    # Check if user has an active subscription for template
-    has_subscription = has_active_subscription(request.user)
-
+    # Check if user is authenticated before checking subscription
+    if request.user.is_authenticated:
+        has_subscription = has_active_subscription(request.user)
+    else:
+        has_subscription = False
+        
     context = {
         'categories': categories,
         'books': visible_books,
