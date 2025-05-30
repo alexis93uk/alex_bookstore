@@ -146,7 +146,7 @@ The database schema is represented by the following Django models and their rela
 ### Entity-Relationship Diagram (ERD)
 
 The following ERD was generated using dbdiagram.io and illustrates the structure of the project’s PostgreSQL database, including all model relationships.
-<img src="static/images/diagram.PNG" alt="diagram" width="600">
+<img src="static/images/diagram.JPG" alt="diagram" width="600">
 
 ---
 
