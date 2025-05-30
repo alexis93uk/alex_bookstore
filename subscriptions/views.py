@@ -32,7 +32,7 @@ def subscribe(request):
             line_items=[{
                 'price_data': {
                     'currency': 'usd',
-                    'unit_amount': 999,  # e.g., $9.99 in cents
+                    'unit_amount': 999, 
                     'product_data': {
                         'name': 'Monthly Subscription',
                     },

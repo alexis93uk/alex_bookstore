@@ -44,7 +44,7 @@ coverage.xml
 local_settings.py
 db.sqlite3
 
-# Media files (if you want to keep user uploads locally, you might want to track these in production, but usually ignore them in dev)
+# Media files 
 media/
 
 # Environment files
