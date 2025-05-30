@@ -14,8 +14,7 @@ Author: Aleksandar Husagic
 - [Installation](#installation)  
 - [Deployment](#deployment)  
 - [Database and Data Structure](#database-and-data-structure)  
-- [Testing](#testing)    
-- [Project Structure](#project-structure)  
+- [Testing](#testing)      
 - [Environment Variables](#environment-variables)   
 - [Future Improvements](#future-improvements)  
 - [Author](#author)  
@@ -146,7 +145,8 @@ The database schema is represented by the following Django models and their rela
 
 ### Entity-Relationship Diagram (ERD)
 
-*(Insert your ERD image here to visually represent these relationships)*
+The following ERD was generated using dbdiagram.io and illustrates the structure of the project’s PostgreSQL database, including all model relationships.
+<img src="static/images/diagram.JPG" alt="diagram" width="600">
 
 ---
 
