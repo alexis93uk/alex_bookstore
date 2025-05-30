@@ -193,39 +193,58 @@ Verify that the system informs you that you are already subscribed (or simply pr
 Use browser developer tools to verify that all media files (especially book cover images) load correctly and that there are no 404 errors.
 
 ## Original custom Django models
-1. Category Model
-- Purpose:
-The Category model allows books to be grouped by genre or topic. This is a custom model that helps organize book data and enables users to browse content by categories.
-- Fields:
-•	id: Auto-generated primary key
-•	name: CharField for the category name
-•	description: Optional TextField for extra information
-Defined in: books/models.py
-<img src="static/images/categorymodel.JPG" alt="categorymodel" width="400">
 
+#### 1. 📘 Category Model
 
-2. Book Model
-- Purpose:
-The Book model is central to the app. It stores all metadata for each book, including whether a book requires a subscription.
-Defined in: books/models.py
-- Fields:
-id: Auto-generated primary key
-title: CharField for book title
-author: CharField for author name
-description: TextField for synopsis
-category: ForeignKey to Category
-is_premium: Boolean for subscription gating
-image: ImageField for book cover (stored on AWS S3)
-full_text: TextField for full content (optional)
-<img src="static/images/booksmodel.JPG" alt="booksmodel" width="400">
+- **Purpose**:  
+  The `Category` model allows books to be grouped by genre or topic. It enhances user experience by organizing content into browseable sections.
 
-3. Subscription Model
-- Purpose:
-Handles user subscriptions, allowing the app to gate premium content and determine access based on dates.
+- **Fields**:  
+  - `id`: Auto-generated primary key  
+  - `name`: CharField – the name of the category  
+  - `description`: TextField – optional description text  
 
-- Fields:
-user: ForeignKey to Django’s User model
-start_date: DateTimeField
-end_date: DateTimeField
-Defined in: subscriptions/models.py
-<img src="static/images/subscriptionsmodel.JPG" alt="subscriptionsmodel" width="400">
+- **Defined in**: `books/models.py`
+
+<img src="static/images/categorymodel.JPG" alt="Category Model" width="400">
+
+---
+
+#### 2. 📚 Book Model
+
+- **Purpose**:  
+  The `Book` model is the core of the app, storing all metadata related to each book. It includes whether the book is premium, linking it to user subscription logic.
+
+- **Fields**:  
+  - `id`: Auto-generated primary key  
+  - `title`: CharField – title of the book  
+  - `author`: CharField – author's name  
+  - `description`: TextField – synopsis  
+  - `category`: ForeignKey – links to a Category  
+  - `is_premium`: Boolean – indicates if a subscription is required  
+  - `image`: ImageField – cover image stored on AWS S3  
+  - `full_text`: TextField – optional full book content  
+
+- **Defined in**: `books/models.py`
+
+<img src="static/images/booksmodel.JPG" alt="Book Model" width="400">
+
+---
+
+#### 3. 💳 Subscription Model
+
+- **Purpose**:  
+  The `Subscription` model manages premium access by tracking a user’s subscription period. It integrates with the business logic for showing/hiding premium content.
+
+- **Fields**:  
+  - `user`: ForeignKey – links to Django’s built-in `User` model  
+  - `start_date`: DateTimeField – subscription start  
+  - `end_date`: DateTimeField – subscription end  
+
+- **Defined in**: `subscriptions/models.py`
+
+<img src="static/images/subscriptionsmodel.JPG" alt="Subscription Model" width="400">
+
+---
+
+These models were not inherited or prebuilt—they were entirely custom-designed for this project.
