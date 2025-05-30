@@ -1,4 +1,9 @@
 # Alex Bookstore
+https://alex-bookstore-6dcd2c22e5a6.herokuapp.com/
+
+<p align="center">
+  <img src="static/images/homepage.JPG" alt="Home Page" width="600">
+</p>
 
 ## Table of Contents
 
@@ -153,10 +158,6 @@ The database schema is represented by the following Django models and their rela
 
 
 *************
-
-  # Presentation of Project 4 - alex bookstore
-## Briefing
-Alex Bookstore is a Django-based web application that enables users to browse categorized books, view detailed information, and access premium content through subscriptions, with integrated Stripe payments and AWS S3 for media.
 
 ## Structured layout:
 Alex Bookstore features a clean, responsive layout with a persistent header and navigation bar. The home page presents a carousel highlighting featured books, followed by organized sections for categories and recent books. Each category page displays an overlay with a category image, description, and a list of related books, while individual book detail pages showcase cover images, book details, and a premium “Read Full Text” option for subscribers. Additionally, the site includes user authentication pages, subscription flows via Stripe, and an admin panel for managing content. The design, built with Bootstrap 5, ensures intuitive navigation and a consistent experience across devices.
