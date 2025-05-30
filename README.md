@@ -17,7 +17,6 @@ Author: Aleksandar Husagic
 - [Database and Data Structure](#database-and-data-structure)  
 - [Manual Testing](#manual-testing)      
 - [Environment Variables](#environment-variables)   
-- [Future Improvements](#future-improvements)   
 ---
 
 ## Project Overview
@@ -331,7 +330,23 @@ Use browser developer tools to verify that all media files (especially book cove
 - **Defined in**: `subscriptions/models.py`
 
 <img src="static/images/subscriptionsmodel.JPG" alt="Subscription Model" width="400">
+These models were not inherited or prebuilt—they were entirely custom-designed for this project.
 
 ---
 
-These models were not inherited or prebuilt—they were entirely custom-designed for this project.
+## Environment Variables
+
+To ensure security and flexibility, sensitive credentials and configuration settings are managed using environment variables. These include:
+
+SECRET_KEY – Django’s secret key for cryptographic signing
+DEBUG – Set to False in production
+DATABASE_URL – PostgreSQL connection string for production (Heroku)
+STRIPE_PUBLIC_KEY and STRIPE_SECRET_KEY – Stripe API keys for payment integration
+AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME – AWS S3 credentials for media storage
+ALLOWED_HOSTS – Specifies allowed domains for deployment
+
+These variables are defined locally in a .env file (excluded from version control) and set in Heroku via the Config Vars panel for secure deployment.
+---
+
+
+
