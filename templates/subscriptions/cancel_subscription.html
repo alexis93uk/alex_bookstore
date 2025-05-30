@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container mt-4">
-  <h2>Cancel Subscription</h2>
+<div class="container mt-5 p-4 bg-light rounded shadow" style="max-width: 600px;">
+  <h2 class="mb-3">Cancel Subscription</h2>
   <p>Are you sure you want to cancel your subscription? This action cannot be undone.</p>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-danger">Cancel Subscription</button>
+    <button type="submit" class="btn btn-danger mt-3 px-4">Cancel Subscription</button>
   </form>
 </div>
 {% endblock %}
