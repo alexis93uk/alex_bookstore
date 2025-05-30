@@ -9,7 +9,8 @@ Author: Aleksandar Husagic
 ## Table of Contents
 
 - [Project Overview](#project-overview)  
-- [Features](#features)  
+- [Features](#features) 
+- [🧑‍💻 User Stories](#user-stories)  
 - [Technologies Used](#technologies-used)  
 - [Installation](#installation)  
 - [Deployment](#deployment)  
@@ -115,7 +116,8 @@ The following user stories describe key actions and features available within th
   Based on their subscription, users see customized messages (e.g., welcome back vs. upgrade prompt).
 
 - **Visual Preview**:  
-  ![Subscription Message](static/images/subscription_message.JPG)
+  ![Subscription Message](static/images/welcomeback_message.JPG)
+  ![Subscription Message](static/images/check_subscription.JPG)
 
 - **Details**:  
   This enhances the UX by giving users contextual feedback—whether they’re active members or still need to subscribe.
