@@ -4,66 +4,91 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
-  
-  .navbar {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  
-  
-  .list-group-item {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  
-  
-  h1, h2, h3, h4 {
-    color: #333;
-    text-shadow: 1px 1px 2px #fff;
-  }
-  
 
-  .overlay-container {
-    background-color: rgba(255, 255, 255, 0.7); 
-    padding: 1rem;
-    border-radius: 8px;
-  }
-  
-  .category-list .list-group-item {
-    background-color: rgba(255, 255, 255, 0.6);
-    border: none;
-  }
-  
-  
-  h1, h2, h3 {
-    color: #333;
-    text-shadow: 1px 1px 2px #fff;
-  }
-  
-  .home-row {
-    min-height: 80vh; 
-    display: flex;
-    align-items: center;
-  }
+.navbar {
+  background-color: rgba(255, 255, 255, 0.8);
+}
 
+.list-group-item {
+  background-color: rgba(255, 255, 255, 0.8);
+}
 
-  .overlay-container {
-    background-color: rgba(255, 255, 255, 0.7); /* White-ish overlay */
-    padding: 1rem;
-    border-radius: 8px;
-    color: #333;  /* Ensure text is dark enough */
-  }
-  
-  .overlay-container h2, .overlay-container p {
-    text-shadow: 1px 1px 2px #fff;
-  }
+h1, h2, h3, h4 {
+  color: #333;
+  text-shadow: 1px 1px 2px #fff;
+}
 
-  .form-label {
-    font-weight: 600; /* Make labels bolder */
-  }
-  
-  .form-control {
-    background-color: #fff;
-    border: 1px solid #ccc;
-  }
-  
+.overlay-container {
+  background-color: rgba(255, 255, 255, 0.7); 
+  padding: 1rem;
+  border-radius: 8px;
+  color: #333;
+}
 
-  
+.category-list .list-group-item {
+  background-color: rgba(255, 255, 255, 0.6);
+  border: none;
+}
+
+.home-row {
+  min-height: 80vh; 
+  display: flex;
+  align-items: center;
+}
+
+.form-label {
+  font-weight: 600;
+}
+
+.form-control {
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+/* DARK MODE */
+
+body.dark-mode {
+  color: #e0e0e0 !important;
+  /* Keep background image but add a dark overlay */
+  background-image: 
+    linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)),
+    url("../images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body.dark-mode a,
+body.dark-mode .nav-link {
+  color: #90caf9 !important;
+}
+
+body.dark-mode .navbar {
+  background-color: #1f1f1f !important;
+}
+
+body.dark-mode .btn-outline-secondary {
+  color: #e0e0e0 !important;
+  border-color: #90caf9 !important;
+}
+
+body.dark-mode .btn-outline-secondary:hover {
+  background-color: #90caf9 !important;
+  color: #121212 !important;
+}
+
+body.dark-mode .overlay-container,
+body.dark-mode .list-group-item {
+  background-color: rgba(30, 30, 30, 0.8) !important;
+  color: #ddd !important;
+}
+
+body.dark-mode .overlay-container h2,
+body.dark-mode .overlay-container p,
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4 {
+  color: #ddd !important;
+  text-shadow: none !important;
+}
